@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080608">
+  <title>THE LAST SHAPE — A Digital Survival Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="art"></canvas>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">◯ △ □</span><span>THE LAST SHAPE</span></div>
+    <div class="top-status"><span class="status-dot"></span> SURVIVAL SYSTEM ONLINE</div>
+    <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">SOUND: OFF</button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="eyebrow"><span class="line"></span> AN INTERACTIVE CODE ART EXPERIENCE <span class="line"></span></div>
+      <h1>THE LAST<br><span>SHAPE</span></h1>
+      <p class="subtitle">ONE SHAPE. ONE CHANCE. <em>DON'T GET CAUGHT.</em></p>
+      <div class="symbol-row" aria-label="Circle triangle square symbols">
+        <span class="symbol circle">○</span><span class="symbol triangle">△</span><span class="symbol square">□</span>
+      </div>
+      <div class="hero-actions">
+        <button class="primary-btn" id="enterBtn">ENTER THE GAME <span>↗</span></button>
+        <button class="ghost-btn" id="aboutBtn">ABOUT THE ART</button>
+      </div>
+      <div class="hero-foot"><span>PLAYER 067 // ARTIFACT 001</span><span>SEOUL · 20XX</span></div>
+    </section>
+
+    <section class="game-panel hidden" id="gamePanel">
+      <div class="panel-heading">
+        <div><span class="eyebrow-small">ROUND 01 / THE HONEYCOMB</span><h2>CARVE YOUR <span>FATE.</span></h2></div>
+        <div class="timer-wrap"><span>TIME LEFT</span><strong id="timer">30</strong></div>
+      </div>
+      <p class="instructions">Trace the glowing triangle by moving your pointer along its edges. Stay precise. Every second counts.</p>
+      <div class="challenge-stage" id="stage">
+        <div class="cookie-glow"></div>
+        <div class="cookie">
+          <svg class="cookie-art" viewBox="0 0 400 400" role="img" aria-label="Golden honeycomb cookie with triangle">
+            <defs>
+              <radialGradient id="gold" cx="38%" cy="30%" r="70%"><stop offset="0" stop-color="#ffe5a0"/><stop offset=".48" stop-color="#d88a2d"/><stop offset="1" stop-color="#754019"/></radialGradient>
+              <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" seed="8"/><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .17 0"/></filter>
+              <filter id="shadow"><feGaussianBlur stdDeviation="5"/></filter>
+            </defs>
+            <circle cx="200" cy="200" r="184" fill="#32170b" opacity=".55" transform="translate(5 9)" filter="url(#shadow)"/>
+            <circle cx="200" cy="200" r="181" fill="url(#gold)" stroke="#f7bf62" stroke-width="5"/>
+            <circle cx="200" cy="200" r="171" fill="none" stroke="#8c4d1c" stroke-width="2" opacity=".6"/>
+            <circle cx="200" cy="200" r="178" filter="url(#rough)" opacity=".35"/>
+            <path id="trianglePath" d="M200 78 L306 285 L94 285 Z" fill="none" stroke="#61320f" stroke-width="17" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M200 78 L306 285 L94 285 Z" fill="none" stroke="#f4bd69" stroke-width="4" stroke-linejoin="round" opacity=".85"/>
+            <path id="tracePath" d="M200 78 L306 285 L94 285 Z" fill="none" stroke="#fff0bd" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700"/>
+          </svg>
+        </div>
+        <div class="stage-label"><span class="mini-dot"></span> POINTER CONTROL ACTIVE</div>
+        <div class="progress-track"><div id="progressBar"></div></div>
+      </div>
+      <div class="game-bottom"><span id="gameMessage">FOLLOW THE EDGE. DON'T BREAK THE LINE.</span><button class="small-btn" id="resetBtn">RESET ROUND ↻</button></div>
+      <div class="game-controls"><span>MOVE POINTER TO TRACE</span><span>ESC — EXIT GAME</span></div>
+    </section>
+
+    <section class="result hidden" id="result">
+      <div class="result-symbol" id="resultSymbol">△</div>
+      <p class="eyebrow-small">ROUND 01 COMPLETE</p>
+      <h2 id="resultTitle">YOU <span>SURVIVED.</span></h2>
+      <p id="resultText">The shape is yours. The next round is waiting.</p>
+      <button class="primary-btn" id="againBtn">PLAY AGAIN ↗</button>
+    </section>
+  </main>
+
+  <div class="corner corner-tl"></div><div class="corner corner-br"></div>
+  <footer><span>CODED WITH CREATIVE INTENT</span><span>◯ &nbsp; △ &nbsp; □</span><span>THE GAME IS IN YOUR HANDS</span></footer>
+
+  <div class="modal hidden" id="aboutModal">
+    <div class="modal-card"><button class="modal-close" id="closeAbout">×</button><p class="eyebrow-small">THE ARTIST'S NOTE</p><h2>BEYOND THE <span>GAME.</span></h2><p>THE LAST SHAPE reimagines the tension, symbols and visual language of a survival-game arena as an interactive digital artwork. The circle, triangle and square become a visual code. The golden honeycomb becomes a test of patience, precision and control.</p><p class="modal-credit">ORIGINAL CODE ART CONCEPT · HTML / CSS / JAVASCRIPT CANVAS</p></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
